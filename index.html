@@ -35,6 +35,8 @@
             color: var(--color-text);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .cursor {
@@ -208,6 +210,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .hero-text p {
@@ -215,12 +218,16 @@
             color: var(--color-text-secondary);
             margin-bottom: 30px;
             max-width: 500px;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.1s;
         }
 
         .cta-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
         }
 
         .btn {
@@ -235,6 +242,7 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .btn::before {
@@ -261,7 +269,8 @@
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover,
+        .btn-primary:active {
             transform: translateY(-3px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
@@ -272,7 +281,8 @@
             border: 2px solid var(--color-primary);
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover,
+        .btn-secondary:active {
             background: rgba(0, 212, 255, 0.1);
             transform: translateY(-3px);
         }
@@ -312,11 +322,13 @@
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 0.8s ease forwards;
+            will-change: transform;
         }
 
         .hero-3d:hover {
             border-color: rgba(0, 212, 255, 0.4);
             box-shadow: 0 15px 50px rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
         .hero-room {
@@ -345,9 +357,12 @@
             font-weight: 700;
             color: var(--color-primary);
             z-index: 20;
+            -webkit-tap-highlight-color: transparent;
+            will-change: transform;
         }
 
-        .hotspot:hover {
+        .hotspot:hover,
+        .hotspot:active {
             width: 40px;
             height: 40px;
             box-shadow: 0 0 35px rgba(0, 212, 255, 1), 0 0 50px rgba(0, 212, 255, 0.6);
@@ -444,6 +459,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.8s ease forwards;
+            will-change: transform;
         }
 
         .skill-card:nth-child(1) {
@@ -474,7 +490,8 @@
             opacity: 1;
         }
 
-        .skill-card:hover {
+        .skill-card:hover,
+        .skill-card:active {
             transform: translateY(-10px);
             border-color: rgba(0, 212, 255, 0.5);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
@@ -484,6 +501,8 @@
             font-size: 48px;
             margin-bottom: 20px;
             display: block;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .skill-card h3 {
@@ -516,6 +535,7 @@
             overflow: hidden;
             transition: all 0.25s ease;
             animation: fadeInUp 0.8s ease forwards;
+            will-change: transform;
         }
 
         .project-card:nth-child(1) {
@@ -530,7 +550,8 @@
             animation-delay: 0.4s;
         }
 
-        .project-card:hover {
+        .project-card:hover,
+        .project-card:active {
             transform: translateY(-8px);
             border-color: rgba(0, 212, 255, 0.5);
             box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15);
@@ -556,6 +577,7 @@
         .project-links {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .project-links a {
@@ -567,9 +589,11 @@
             font-size: 12px;
             transition: all 0.2s ease;
             border: 1px solid rgba(0, 212, 255, 0.2);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .project-links a:hover {
+        .project-links a:hover,
+        .project-links a:active {
             background: rgba(0, 212, 255, 0.2);
             border-color: var(--color-primary);
             transform: translateY(-2px);
@@ -620,6 +644,9 @@
             transition: all 0.2s ease;
             cursor: pointer;
             animation: fadeInUp 0.6s ease forwards;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .tech-tag:nth-child(1) { animation-delay: 0s; }
@@ -630,7 +657,8 @@
         .tech-tag:nth-child(6) { animation-delay: 0.25s; }
         .tech-tag:nth-child(7) { animation-delay: 0.3s; }
 
-        .tech-tag:hover {
+        .tech-tag:hover,
+        .tech-tag:active {
             background: rgba(0, 212, 255, 0.2);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
@@ -752,8 +780,10 @@
             border-radius: 8px;
             color: var(--color-text);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-group input:focus,
@@ -773,6 +803,7 @@
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
+            font-family: inherit;
         }
 
         .form-submit {
@@ -788,9 +819,13 @@
             align-self: flex-start;
             animation: fadeInUp 0.8s ease forwards;
             animation-delay: 0.4s;
+            -webkit-appearance: none;
+            appearance: none;
+            will-change: transform;
         }
 
-        .form-submit:hover {
+        .form-submit:hover,
+        .form-submit:active {
             transform: translateY(-3px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
@@ -813,6 +848,7 @@
             justify-content: center;
             gap: 25px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .social-links a {
@@ -821,9 +857,11 @@
             transition: all 0.25s ease;
             font-size: 18px;
             font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .social-links a:hover {
+        .social-links a:hover,
+        .social-links a:active {
             transform: translateY(-3px) scale(1.2);
             color: var(--color-accent);
         }
@@ -862,6 +900,7 @@
 
             .hero-3d {
                 height: 300px;
+                width: 100%;
             }
 
             .hero-info {
@@ -869,6 +908,7 @@
                 bottom: 20px;
                 right: 20px;
                 padding: 15px;
+                font-size: 12px;
             }
 
             .section-title {
@@ -888,9 +928,14 @@
             }
 
             .hotspot {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .hotspot:active {
+                width: 40px;
+                height: 40px;
             }
 
             .cta-buttons {
@@ -901,6 +946,8 @@
             .btn {
                 width: 100%;
                 text-align: center;
+                padding: 12px 24px;
+                font-size: 14px;
             }
 
             .contact-container {
@@ -909,21 +956,8 @@
 
             .form-submit {
                 width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 28px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            nav ul {
-                gap: 10px;
-                font-size: 11px;
+                padding: 12px 24px;
+                font-size: 14px;
             }
 
             .skill-card,
@@ -934,62 +968,207 @@
             .timeline {
                 padding-left: 20px;
             }
-        }
 
-        @media print {
-            nav,
-            footer,
-            .cursor,
-            .cursor-follower,
-            .scroll-progress {
-                display: none;
+            .timeline::before {
+                left: -20px;
             }
 
-            body {
-                background: white;
-                color: black;
+            .timeline-item::before {
+                left: -26px;
             }
 
-            .hero-3d,
-            .hotspot {
-                display: none;
+            .timeline-item::after {
+                left: -32px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .about-text h2 {
+                font-size: 28px;
+            }
+
+            .skill-card h3,
+            .project-content h3 {
+                font-size: 18px;
+            }
+
+            .skill-card p,
+            .project-content p {
+                font-size: 13px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px 14px;
             }
         }
 
-        .skip-to-content {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--color-primary);
-            color: var(--color-bg-primary);
-            padding: 8px;
-            text-decoration: none;
-            z-index: 10001;
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .hero-text p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 11px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero-3d {
+                height: 250px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .skill-card,
+            .project-card {
+                padding: 20px;
+            }
+
+            .skill-icon {
+                font-size: 36px;
+            }
+
+            .tech-tag {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .timeline {
+                padding-left: 15px;
+            }
+
+            .about-text h2 {
+                font-size: 22px;
+            }
+
+            .about-text p {
+                font-size: 13px;
+            }
+
+            .form-submit {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
+
+            .social-links a {
+                font-size: 16px;
+            }
+
+            .project-links a {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            #skills,
+            #projects,
+            #about,
+            #contact {
+                padding: 60px 0;
+            }
+
+            .hero-info {
+                bottom: 15px;
+                right: 15px;
+                max-width: 180px;
+                padding: 12px;
+            }
+
+            .hero-info h3 {
+                font-size: 14px;
+            }
+
+            .hero-info p {
+                font-size: 11px;
+            }
         }
 
-        .skip-to-content:focus {
-            top: 0;
+        @media (max-width: 360px) {
+            .hero-text h1 {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            nav ul {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 10px;
+            }
         }
 
-        a:focus,
-        button:focus,
-        input:focus,
-        textarea:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
-        .text-center {
-            text-align: center;
+        @supports (backdrop-filter: blur(10px)) {
+            nav {
+                backdrop-filter: blur(10px);
+            }
         }
 
-        .mt-4 {
-            margin-top: 40px;
+        @supports not (backdrop-filter: blur(10px)) {
+            nav {
+                background: rgba(10, 14, 39, 0.99);
+            }
         }
 
-        .mb-4 {
-            margin-bottom: 40px;
-        }
+        touch-action: manipulation;
     </style>
 </head>
 
@@ -1311,6 +1490,10 @@
                 e.preventDefault();
                 showInfoPanel(hotspot.dataset.section);
             });
+            hotspot.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                showInfoPanel(hotspot.dataset.section);
+            });
         });
 
         infoPanel.addEventListener('mouseenter', () => {
@@ -1323,8 +1506,8 @@
             '%c Portfolio Website Loaded Successfully!',
             'color: #00d4ff; font-size: 20px; font-weight: bold;'
         );
-        console.log('%cAnimations: TOP TO BOTTOM (No Loop)!', 'color: #00ff88; font-size: 14px;');
-        console.log('%cClean, Professional, No Flicker!', 'color: #ff006e; font-size: 14px;');
+        console.log('%cAnimations: MOBILE & DESKTOP!', 'color: #00ff88; font-size: 14px;');
+        console.log('%cResponsive & Optimized!', 'color: #ff006e; font-size: 14px;');
 
         window.addEventListener('load', () => {
             const loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
