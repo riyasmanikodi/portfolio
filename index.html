@@ -35,8 +35,6 @@
             color: var(--color-text);
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         .cursor {
@@ -210,7 +208,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .hero-text p {
@@ -218,16 +215,12 @@
             color: var(--color-text-secondary);
             margin-bottom: 30px;
             max-width: 500px;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.1s;
         }
 
         .cta-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.2s;
         }
 
         .btn {
@@ -242,7 +235,6 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
-            will-change: transform;
         }
 
         .btn::before {
@@ -269,8 +261,7 @@
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
-        .btn-primary:hover,
-        .btn-primary:active {
+        .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
@@ -281,33 +272,9 @@
             border: 2px solid var(--color-primary);
         }
 
-        .btn-secondary:hover,
-        .btn-secondary:active {
+        .btn-secondary:hover {
             background: rgba(0, 212, 255, 0.1);
             transform: translateY(-3px);
-        }
-
-        /* TOP TO BOTTOM ANIMATION - NO LOOP */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
 
         .hero-3d {
@@ -321,14 +288,12 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 0.8s ease forwards;
-            will-change: transform;
+            animation: floatY 4s ease-in-out infinite;
         }
 
         .hero-3d:hover {
             border-color: rgba(0, 212, 255, 0.4);
             box-shadow: 0 15px 50px rgba(0, 212, 255, 0.2);
-            transition: all 0.3s ease;
         }
 
         .hero-room {
@@ -357,17 +322,26 @@
             font-weight: 700;
             color: var(--color-primary);
             z-index: 20;
-            -webkit-tap-highlight-color: transparent;
-            will-change: transform;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
-        .hotspot:hover,
-        .hotspot:active {
+        .hotspot:hover {
             width: 40px;
             height: 40px;
             box-shadow: 0 0 35px rgba(0, 212, 255, 1), 0 0 50px rgba(0, 212, 255, 0.6);
             background: rgba(0, 212, 255, 0.3);
             transform: scale(1.25);
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+                transform: translateY(0);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
+                transform: translateY(-4px);
+            }
         }
 
         .hero-info {
@@ -428,6 +402,71 @@
             transform: translateX(5px);
         }
 
+        @keyframes slideUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDownIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes floatX {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(6px); }
+        }
+
+        .animate-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .animate-scroll.active {
+            animation: slideUpIn 0.5s ease forwards;
+        }
+
+        .animate-scroll.scroll-up {
+            animation: slideDownIn 0.5s ease forwards;
+        }
+
+        .animate-card {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+
+        .animate-card.active {
+            animation: scaleIn 0.5s ease forwards;
+        }
+
         #skills {
             padding: 100px 0;
         }
@@ -441,7 +480,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .skills-grid {
@@ -458,20 +496,7 @@
             transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.8s ease forwards;
-            will-change: transform;
-        }
-
-        .skill-card:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .skill-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .skill-card:nth-child(3) {
-            animation-delay: 0.4s;
+            animation: floatY 4s ease-in-out infinite;
         }
 
         .skill-card::before {
@@ -490,8 +515,7 @@
             opacity: 1;
         }
 
-        .skill-card:hover,
-        .skill-card:active {
+        .skill-card:hover {
             transform: translateY(-10px);
             border-color: rgba(0, 212, 255, 0.5);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
@@ -501,8 +525,7 @@
             font-size: 48px;
             margin-bottom: 20px;
             display: block;
-            -webkit-user-select: none;
-            user-select: none;
+            animation: floatX 3s ease-in-out infinite;
         }
 
         .skill-card h3 {
@@ -534,24 +557,10 @@
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.25s ease;
-            animation: fadeInUp 0.8s ease forwards;
-            will-change: transform;
+            animation: floatY 4.5s ease-in-out infinite;
         }
 
-        .project-card:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .project-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .project-card:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .project-card:hover,
-        .project-card:active {
+        .project-card:hover {
             transform: translateY(-8px);
             border-color: rgba(0, 212, 255, 0.5);
             box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15);
@@ -577,7 +586,6 @@
         .project-links {
             display: flex;
             gap: 12px;
-            flex-wrap: wrap;
         }
 
         .project-links a {
@@ -589,11 +597,9 @@
             font-size: 12px;
             transition: all 0.2s ease;
             border: 1px solid rgba(0, 212, 255, 0.2);
-            -webkit-tap-highlight-color: transparent;
         }
 
-        .project-links a:hover,
-        .project-links a:active {
+        .project-links a:hover {
             background: rgba(0, 212, 255, 0.2);
             border-color: var(--color-primary);
             transform: translateY(-2px);
@@ -623,10 +629,6 @@
             line-height: 1.8;
         }
 
-        .about-text {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -643,22 +645,10 @@
             color: var(--color-primary);
             transition: all 0.2s ease;
             cursor: pointer;
-            animation: fadeInUp 0.6s ease forwards;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            user-select: none;
+            animation: floatX 3.5s ease-in-out infinite;
         }
 
-        .tech-tag:nth-child(1) { animation-delay: 0s; }
-        .tech-tag:nth-child(2) { animation-delay: 0.05s; }
-        .tech-tag:nth-child(3) { animation-delay: 0.1s; }
-        .tech-tag:nth-child(4) { animation-delay: 0.15s; }
-        .tech-tag:nth-child(5) { animation-delay: 0.2s; }
-        .tech-tag:nth-child(6) { animation-delay: 0.25s; }
-        .tech-tag:nth-child(7) { animation-delay: 0.3s; }
-
-        .tech-tag:hover,
-        .tech-tag:active {
+        .tech-tag:hover {
             background: rgba(0, 212, 255, 0.2);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
@@ -667,7 +657,6 @@
         .timeline {
             position: relative;
             padding-left: 30px;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .timeline::before {
@@ -683,12 +672,8 @@
         .timeline-item {
             margin-bottom: 30px;
             position: relative;
-            animation: fadeInUp 0.6s ease forwards;
+            animation: floatY 4s ease-in-out infinite;
         }
-
-        .timeline-item:nth-child(1) { animation-delay: 0s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.1s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.2s; }
 
         .timeline-item::before {
             content: '';
@@ -712,6 +697,7 @@
             height: 24px;
             border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         .timeline-item:last-child::after {
@@ -745,7 +731,6 @@
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .contact-form {
@@ -758,13 +743,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            animation: fadeInUp 0.6s ease forwards;
         }
-
-        .form-group:nth-child(1) { animation-delay: 0s; }
-        .form-group:nth-child(2) { animation-delay: 0.1s; }
-        .form-group:nth-child(3) { animation-delay: 0.2s; }
-        .form-group:nth-child(4) { animation-delay: 0.3s; }
 
         .form-group label {
             font-size: 14px;
@@ -780,10 +759,8 @@
             border-radius: 8px;
             color: var(--color-text);
             font-family: inherit;
-            font-size: 16px;
+            font-size: 14px;
             transition: all 0.2s ease;
-            -webkit-appearance: none;
-            appearance: none;
         }
 
         .form-group input:focus,
@@ -803,7 +780,6 @@
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
-            font-family: inherit;
         }
 
         .form-submit {
@@ -817,15 +793,9 @@
             cursor: pointer;
             transition: all 0.25s ease;
             align-self: flex-start;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.4s;
-            -webkit-appearance: none;
-            appearance: none;
-            will-change: transform;
         }
 
-        .form-submit:hover,
-        .form-submit:active {
+        .form-submit:hover {
             transform: translateY(-3px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
@@ -848,7 +818,6 @@
             justify-content: center;
             gap: 25px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
         }
 
         .social-links a {
@@ -857,11 +826,9 @@
             transition: all 0.25s ease;
             font-size: 18px;
             font-weight: 500;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        .social-links a:hover,
-        .social-links a:active {
+        .social-links a:hover {
             transform: translateY(-3px) scale(1.2);
             color: var(--color-accent);
         }
@@ -900,7 +867,6 @@
 
             .hero-3d {
                 height: 300px;
-                width: 100%;
             }
 
             .hero-info {
@@ -908,7 +874,6 @@
                 bottom: 20px;
                 right: 20px;
                 padding: 15px;
-                font-size: 12px;
             }
 
             .section-title {
@@ -921,21 +886,20 @@
                 gap: 40px;
             }
 
-            .skills-grid,
-            .projects-grid {
+            .skills-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
 
-            .hotspot {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .hotspot:active {
-                width: 40px;
-                height: 40px;
+            .hotspot {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
             }
 
             .cta-buttons {
@@ -946,8 +910,6 @@
             .btn {
                 width: 100%;
                 text-align: center;
-                padding: 12px 24px;
-                font-size: 14px;
             }
 
             .contact-container {
@@ -956,8 +918,21 @@
 
             .form-submit {
                 width: 100%;
-                padding: 12px 24px;
-                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: 10px;
+                font-size: 11px;
             }
 
             .skill-card,
@@ -968,207 +943,62 @@
             .timeline {
                 padding-left: 20px;
             }
+        }
 
-            .timeline::before {
-                left: -20px;
+        @media print {
+            nav,
+            footer,
+            .cursor,
+            .cursor-follower,
+            .scroll-progress {
+                display: none;
             }
 
-            .timeline-item::before {
-                left: -26px;
+            body {
+                background: white;
+                color: black;
             }
 
-            .timeline-item::after {
-                left: -32px;
-            }
-
-            nav a {
-                font-size: 13px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .about-text h2 {
-                font-size: 28px;
-            }
-
-            .skill-card h3,
-            .project-content h3 {
-                font-size: 18px;
-            }
-
-            .skill-card p,
-            .project-content p {
-                font-size: 13px;
-            }
-
-            .form-group label {
-                font-size: 13px;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                font-size: 14px;
-                padding: 10px 14px;
+            .hero-3d,
+            .hotspot {
+                display: none;
             }
         }
 
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-
-            .hero-text p {
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 22px;
-                margin-bottom: 30px;
-            }
-
-            nav ul {
-                gap: 12px;
-                font-size: 11px;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .hero-3d {
-                height: 250px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-
-            .skills-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .skill-card,
-            .project-card {
-                padding: 20px;
-            }
-
-            .skill-icon {
-                font-size: 36px;
-            }
-
-            .tech-tag {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-
-            .timeline {
-                padding-left: 15px;
-            }
-
-            .about-text h2 {
-                font-size: 22px;
-            }
-
-            .about-text p {
-                font-size: 13px;
-            }
-
-            .form-submit {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-
-            .social-links {
-                gap: 20px;
-            }
-
-            .social-links a {
-                font-size: 16px;
-            }
-
-            .project-links a {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-
-            #skills,
-            #projects,
-            #about,
-            #contact {
-                padding: 60px 0;
-            }
-
-            .hero-info {
-                bottom: 15px;
-                right: 15px;
-                max-width: 180px;
-                padding: 12px;
-            }
-
-            .hero-info h3 {
-                font-size: 14px;
-            }
-
-            .hero-info p {
-                font-size: 11px;
-            }
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-primary);
+            color: var(--color-bg-primary);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10001;
         }
 
-        @media (max-width: 360px) {
-            .hero-text h1 {
-                font-size: 20px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .btn {
-                padding: 8px 16px;
-                font-size: 12px;
-            }
-
-            nav ul {
-                gap: 8px;
-            }
-
-            nav a {
-                font-size: 10px;
-            }
+        .skip-to-content:focus {
+            top: 0;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
         }
 
-        @supports (backdrop-filter: blur(10px)) {
-            nav {
-                backdrop-filter: blur(10px);
-            }
+        .text-center {
+            text-align: center;
         }
 
-        @supports not (backdrop-filter: blur(10px)) {
-            nav {
-                background: rgba(10, 14, 39, 0.99);
-            }
+        .mt-4 {
+            margin-top: 40px;
         }
 
-        touch-action: manipulation;
+        .mb-4 {
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 
@@ -1251,19 +1081,19 @@
 
         <section id="skills">
             <div class="container">
-                <h2 class="section-title">Technical Skills</h2>
+                <h2 class="section-title animate-scroll">Technical Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-card">
+                    <div class="skill-card animate-card">
                         <div class="skill-icon" aria-hidden="true">🔧</div>
                         <h3>Technical Support</h3>
                         <p>Expert in system troubleshooting, hardware diagnostics, and IT infrastructure management. Proficient with Windows, Mac, networking, and enterprise support systems.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="skill-card animate-card">
                         <div class="skill-icon" aria-hidden="true">⚙️</div>
                         <h3>Programming &amp; Game Logic</h3>
                         <p>Specialized in full-stack development with Python, JavaScript, React, Flask, and database design. Experience building AR/VR applications using Unreal Engine blueprints.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="skill-card animate-card">
                         <div class="skill-icon" aria-hidden="true">🎨</div>
                         <h3>Creative &amp; AR/VR</h3>
                         <p>Certified in AR/VR development with Unreal Engine 5. Skilled in 3D modeling, animation, and cinematic storytelling.</p>
@@ -1274,9 +1104,9 @@
 
         <section id="projects">
             <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
+                <h2 class="section-title animate-scroll">Featured Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-card animate-card">
                         <div class="project-content">
                             <h3>Video Steganography</h3>
                             <p>A secure communication tool that embeds hidden video files using Python and encryption protocols.</p>
@@ -1285,7 +1115,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card animate-card">
                         <div class="project-content">
                             <h3>Farmers E-Market</h3>
                             <p>Platform enabling farmers to sell produce directly. Features product listings and delivery integration.</p>
@@ -1294,7 +1124,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card animate-card">
                         <div class="project-content">
                             <h3>3D Portfolio</h3>
                             <p>Interactive resume website showcasing technical skills with real-time 3D visualization.</p>
@@ -1310,7 +1140,7 @@
         <section id="about">
             <div class="container">
                 <div class="about-content">
-                    <div class="about-text">
+                    <div class="about-text animate-scroll">
                         <h2>About Me</h2>
                         <p>I'm a self-taught full-stack developer with a passion for creating immersive 3D experiences. With an MCA from Anna University and hands-on experience in AR/VR development, I bridge the gap between creative design and technical implementation.</p>
                         <div class="tech-stack">
@@ -1324,7 +1154,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div class="animate-scroll">
                         <h2 style="color: var(--color-primary); margin-bottom: 30px;">Experience Timeline</h2>
                         <div class="timeline">
                             <div class="timeline-item">
@@ -1350,8 +1180,8 @@
 
         <section id="contact">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="contact-container">
+                <h2 class="section-title animate-scroll">Get In Touch</h2>
+                <div class="contact-container animate-scroll">
                     <form action="https://formspree.io/f/mnneyevy" method="POST" class="contact-form" novalidate>
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -1414,6 +1244,7 @@
         });
 
         const nav = document.querySelector('nav');
+        let lastScrollY = 0;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
@@ -1424,6 +1255,8 @@
                 nav.classList.remove('scrolled');
             }
 
+            updateScrollAnimations(currentScrollY > lastScrollY);
+            lastScrollY = currentScrollY;
             updateActiveNav();
         });
 
@@ -1446,6 +1279,28 @@
         }
 
         updateActiveNav();
+
+        function updateScrollAnimations(scrollingDown) {
+            const animateElements = document.querySelectorAll('.animate-scroll, .animate-card');
+
+            animateElements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+
+                if (isVisible) {
+                    el.classList.remove('active', 'scroll-up');
+                    void el.offsetWidth;
+
+                    if (scrollingDown) {
+                        el.classList.add('active');
+                    } else {
+                        el.classList.add('scroll-up');
+                    }
+                } else {
+                    el.classList.remove('active', 'scroll-up');
+                }
+            });
+        }
 
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
@@ -1490,10 +1345,6 @@
                 e.preventDefault();
                 showInfoPanel(hotspot.dataset.section);
             });
-            hotspot.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                showInfoPanel(hotspot.dataset.section);
-            });
         });
 
         infoPanel.addEventListener('mouseenter', () => {
@@ -1506,8 +1357,8 @@
             '%c Portfolio Website Loaded Successfully!',
             'color: #00d4ff; font-size: 20px; font-weight: bold;'
         );
-        console.log('%cAnimations: MOBILE & DESKTOP!', 'color: #00ff88; font-size: 14px;');
-        console.log('%cResponsive & Optimized!', 'color: #ff006e; font-size: 14px;');
+        console.log('%cOptimized Fast Animations!', 'color: #00ff88; font-size: 14px;');
+        console.log('%cScroll UP/DOWN animations with reduced delays!', 'color: #ff006e; font-size: 14px;');
 
         window.addEventListener('load', () => {
             const loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
