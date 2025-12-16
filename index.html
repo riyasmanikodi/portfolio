@@ -277,6 +277,96 @@
             transform: translateY(-3px);
         }
 
+        /* FLOATING UP ANIMATION - START TO END, LOOP */
+        @keyframes floatUp {
+            0% { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            10% { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+            40% { 
+                transform: translateY(-15px);
+            }
+            70% { 
+                transform: translateY(10px);
+            }
+            100% { 
+                transform: translateY(0);
+            }
+        }
+
+        /* SCALE GROW ANIMATION - START TO END, LOOP */
+        @keyframes scaleGrow {
+            0% { 
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            10% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.08);
+            }
+            100% { 
+                transform: scale(1);
+            }
+        }
+
+        /* GLOW PULSE ANIMATION - START TO END, LOOP */
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            }
+        }
+
+        /* BOUNCE ANIMATION - START TO END, LOOP */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-20px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* SLIDE RIGHT ANIMATION - START TO END, LOOP */
+        @keyframes slideRight {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(8px);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            75% {
+                transform: translateX(4px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
         .hero-3d {
             height: 500px;
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
@@ -288,7 +378,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: floatY 4s ease-in-out infinite;
+            animation: floatUp 3s ease-in-out infinite;
         }
 
         .hero-3d:hover {
@@ -314,7 +404,6 @@
             background: rgba(0, 212, 255, 0.15);
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -322,7 +411,7 @@
             font-weight: 700;
             color: var(--color-primary);
             z-index: 20;
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: glowPulse 2s ease-in-out infinite;
         }
 
         .hotspot:hover {
@@ -331,17 +420,6 @@
             box-shadow: 0 0 35px rgba(0, 212, 255, 1), 0 0 50px rgba(0, 212, 255, 0.6);
             background: rgba(0, 212, 255, 0.3);
             transform: scale(1.25);
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-                transform: translateY(0);
-            }
-            50% { 
-                box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
-                transform: translateY(-4px);
-            }
         }
 
         .hero-info {
@@ -402,21 +480,6 @@
             transform: translateX(5px);
         }
 
-        @keyframes floatY {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes floatX {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(8px); }
-        }
-
-        @keyframes floatScale {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
         #skills {
             padding: 100px 0;
         }
@@ -430,7 +493,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: floatScale 3s ease-in-out infinite;
+            animation: scaleGrow 2.5s ease-in-out infinite;
         }
 
         .skills-grid {
@@ -447,7 +510,17 @@
             transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
-            animation: floatY 4s ease-in-out infinite;
+            animation: floatUp 3.5s ease-in-out infinite;
+        }
+
+        .skill-card:nth-child(2) {
+            animation: floatUp 3.5s ease-in-out infinite;
+            animation-delay: 0.2s;
+        }
+
+        .skill-card:nth-child(3) {
+            animation: floatUp 3.5s ease-in-out infinite;
+            animation-delay: 0.4s;
         }
 
         .skill-card::before {
@@ -476,7 +549,7 @@
             font-size: 48px;
             margin-bottom: 20px;
             display: block;
-            animation: floatX 3s ease-in-out infinite;
+            animation: slideRight 2.5s ease-in-out infinite;
         }
 
         .skill-card h3 {
@@ -508,7 +581,17 @@
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.25s ease;
-            animation: floatY 4.5s ease-in-out infinite;
+            animation: floatUp 4s ease-in-out infinite;
+        }
+
+        .project-card:nth-child(2) {
+            animation: floatUp 4s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .project-card:nth-child(3) {
+            animation: floatUp 4s ease-in-out infinite;
+            animation-delay: 0.6s;
         }
 
         .project-card:hover {
@@ -596,7 +679,37 @@
             color: var(--color-primary);
             transition: all 0.2s ease;
             cursor: pointer;
-            animation: floatX 3.5s ease-in-out infinite;
+            animation: slideRight 2.5s ease-in-out infinite;
+        }
+
+        .tech-tag:nth-child(2) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.1s;
+        }
+
+        .tech-tag:nth-child(3) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.2s;
+        }
+
+        .tech-tag:nth-child(4) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .tech-tag:nth-child(5) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.4s;
+        }
+
+        .tech-tag:nth-child(6) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .tech-tag:nth-child(7) {
+            animation: slideRight 2.5s ease-in-out infinite;
+            animation-delay: 0.6s;
         }
 
         .tech-tag:hover {
@@ -623,7 +736,17 @@
         .timeline-item {
             margin-bottom: 30px;
             position: relative;
-            animation: floatY 4s ease-in-out infinite;
+            animation: floatUp 3.5s ease-in-out infinite;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation: floatUp 3.5s ease-in-out infinite;
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation: floatUp 3.5s ease-in-out infinite;
+            animation-delay: 0.4s;
         }
 
         .timeline-item::before {
@@ -637,6 +760,7 @@
             border-radius: 50%;
             border: 3px solid var(--color-bg-primary);
             box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            animation: glowPulse 2s ease-in-out infinite;
         }
 
         .timeline-item::after {
@@ -648,7 +772,7 @@
             height: 24px;
             border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: glowPulse 2s ease-in-out infinite;
         }
 
         .timeline-item:last-child::after {
@@ -682,7 +806,7 @@
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
-            animation: floatScale 3.5s ease-in-out infinite;
+            animation: scaleGrow 3s ease-in-out infinite;
         }
 
         .contact-form {
@@ -745,7 +869,7 @@
             cursor: pointer;
             transition: all 0.25s ease;
             align-self: flex-start;
-            animation: floatY 2s ease-in-out infinite;
+            animation: bounce 2.5s ease-in-out infinite;
         }
 
         .form-submit:hover {
@@ -1281,8 +1405,8 @@
             '%c Portfolio Website Loaded Successfully!',
             'color: #00d4ff; font-size: 20px; font-weight: bold;'
         );
-        console.log('%cContinuous Loop Animations!', 'color: #00ff88; font-size: 14px;');
-        console.log('%cNo Scroll Animations - Pure Loop!', 'color: #ff006e; font-size: 14px;');
+        console.log('%cAnimations: START → END → LOOP!', 'color: #00ff88; font-size: 14px;');
+        console.log('%cNo reverse animations - Pure forward loop!', 'color: #ff006e; font-size: 14px;');
 
         window.addEventListener('load', () => {
             const loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
