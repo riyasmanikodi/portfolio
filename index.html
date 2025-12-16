@@ -405,7 +405,7 @@
         @keyframes slideUpIn {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(60px);
             }
             to {
                 opacity: 1;
@@ -413,14 +413,14 @@
             }
         }
 
-        @keyframes slideDownIn {
+        @keyframes slideDownOut {
             from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(60px);
             }
         }
 
@@ -435,6 +435,17 @@
             }
         }
 
+        @keyframes scaleOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+        }
+
         @keyframes floatY {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
@@ -446,25 +457,29 @@
         }
 
         .animate-scroll {
-            opacity: 0;
-            transform: translateY(50px);
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .animate-scroll.active {
-            animation: slideUpIn 0.5s ease forwards;
+        .animate-scroll.fade-in {
+            animation: slideUpIn 0.6s ease forwards;
         }
 
-        .animate-scroll.scroll-up {
-            animation: slideDownIn 0.5s ease forwards;
+        .animate-scroll.fade-out {
+            animation: slideDownOut 0.6s ease forwards;
         }
 
         .animate-card {
-            opacity: 0;
-            transform: scale(0.85);
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .animate-card.active {
-            animation: scaleIn 0.5s ease forwards;
+        .animate-card.scale-in {
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        .animate-card.scale-out {
+            animation: scaleOut 0.6s ease forwards;
         }
 
         #skills {
@@ -1288,16 +1303,13 @@
                 const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
 
                 if (isVisible) {
-                    el.classList.remove('active', 'scroll-up');
-                    void el.offsetWidth;
-
                     if (scrollingDown) {
-                        el.classList.add('active');
+                        el.classList.remove('fade-out', 'scale-out');
+                        el.classList.add('fade-in', 'scale-in');
                     } else {
-                        el.classList.add('scroll-up');
+                        el.classList.remove('fade-in', 'scale-in');
+                        el.classList.add('fade-out', 'scale-out');
                     }
-                } else {
-                    el.classList.remove('active', 'scroll-up');
                 }
             });
         }
@@ -1357,8 +1369,8 @@
             '%c Portfolio Website Loaded Successfully!',
             'color: #00d4ff; font-size: 20px; font-weight: bold;'
         );
-        console.log('%cOptimized Fast Animations!', 'color: #00ff88; font-size: 14px;');
-        console.log('%cScroll UP/DOWN animations with reduced delays!', 'color: #ff006e; font-size: 14px;');
+        console.log('%cSmooth Reverse Animations (No Refresh)!', 'color: #00ff88; font-size: 14px;');
+        console.log('%cAnimations play ONCE and REVERSE smoothly!', 'color: #ff006e; font-size: 14px;');
 
         window.addEventListener('load', () => {
             const loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
