@@ -402,61 +402,25 @@
             transform: translateX(5px);
         }
 
-        @keyframes slideUpIn {
-            from {
-                opacity: 0;
-                transform: translateY(60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDownOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(60px);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.85);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes scaleOut {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: scale(0.85);
-            }
-        }
-
         @keyframes floatY {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes floatX {
             0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(6px); }
+            50% { transform: translateX(8px); }
         }
 
-        /* ONLY animate cards and centered content, NOT all text */
+        @keyframes floatScale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        #skills {
+            padding: 100px 0;
+        }
+
         .section-title {
             font-size: 48px;
             font-weight: 700;
@@ -466,26 +430,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: floatScale 3s ease-in-out infinite;
         }
 
-        .section-title.fade-in {
-            animation: slideUpIn 0.6s ease forwards;
-        }
-
-        .section-title.fade-out {
-            animation: slideDownOut 0.6s ease forwards;
-        }
-
-        /* ONLY animate the cards in center, NOT surrounding text */
-        .skills-grid,
-        .projects-grid {
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
-        .skill-card,
-        .project-card {
+        .skill-card {
             background: linear-gradient(135deg, rgba(26, 31, 58, 0.8), rgba(26, 31, 58, 0.4));
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 16px;
@@ -496,18 +450,7 @@
             animation: floatY 4s ease-in-out infinite;
         }
 
-        .skill-card.scale-in,
-        .project-card.scale-in {
-            animation: floatY 4s ease-in-out infinite, scaleIn 0.6s ease forwards !important;
-        }
-
-        .skill-card.scale-out,
-        .project-card.scale-out {
-            animation: floatY 4s ease-in-out infinite, scaleOut 0.6s ease forwards !important;
-        }
-
-        .skill-card::before,
-        .project-card::before {
+        .skill-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -519,13 +462,11 @@
             transition: opacity 0.25s ease;
         }
 
-        .skill-card:hover::before,
-        .project-card:hover::before {
+        .skill-card:hover::before {
             opacity: 1;
         }
 
-        .skill-card:hover,
-        .project-card:hover {
+        .skill-card:hover {
             transform: translateY(-10px);
             border-color: rgba(0, 212, 255, 0.5);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
@@ -538,27 +479,59 @@
             animation: floatX 3s ease-in-out infinite;
         }
 
-        .skill-card h3,
-        .project-card h3 {
+        .skill-card h3 {
             font-size: 24px;
             margin-bottom: 15px;
             color: var(--color-primary);
         }
 
-        .skill-card p,
-        .project-card p {
+        .skill-card p {
             color: var(--color-text-secondary);
             font-size: 14px;
             line-height: 1.8;
         }
 
-        #skills {
-            padding: 100px 0;
-        }
-
         #projects {
             padding: 100px 0;
             background: linear-gradient(135deg, rgba(10, 14, 39, 0.5), rgba(26, 31, 58, 0.3));
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.8), rgba(26, 31, 58, 0.4));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            animation: floatY 4.5s ease-in-out infinite;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .project-content p {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .project-links {
@@ -709,14 +682,7 @@
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
-        }
-
-        .contact-container.fade-in {
-            animation: slideUpIn 0.6s ease forwards;
-        }
-
-        .contact-container.fade-out {
-            animation: slideDownOut 0.6s ease forwards;
+            animation: floatScale 3.5s ease-in-out infinite;
         }
 
         .contact-form {
@@ -779,6 +745,7 @@
             cursor: pointer;
             transition: all 0.25s ease;
             align-self: flex-start;
+            animation: floatY 2s ease-in-out infinite;
         }
 
         .form-submit:hover {
@@ -1226,7 +1193,6 @@
         });
 
         const nav = document.querySelector('nav');
-        let lastScrollY = 0;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
@@ -1237,8 +1203,6 @@
                 nav.classList.remove('scrolled');
             }
 
-            updateScrollAnimations(currentScrollY > lastScrollY);
-            lastScrollY = currentScrollY;
             updateActiveNav();
         });
 
@@ -1261,58 +1225,6 @@
         }
 
         updateActiveNav();
-
-        function updateScrollAnimations(scrollingDown) {
-            // Only animate section titles and centered content (cards + form)
-            const sectionTitles = document.querySelectorAll('.section-title');
-            const cards = document.querySelectorAll('.skill-card, .project-card');
-            const contactForm = document.querySelector('.contact-container');
-
-            sectionTitles.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
-
-                if (isVisible) {
-                    if (scrollingDown) {
-                        el.classList.remove('fade-out');
-                        el.classList.add('fade-in');
-                    } else {
-                        el.classList.remove('fade-in');
-                        el.classList.add('fade-out');
-                    }
-                }
-            });
-
-            cards.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
-
-                if (isVisible) {
-                    if (scrollingDown) {
-                        el.classList.remove('scale-out');
-                        el.classList.add('scale-in');
-                    } else {
-                        el.classList.remove('scale-in');
-                        el.classList.add('scale-out');
-                    }
-                }
-            });
-
-            if (contactForm) {
-                const rect = contactForm.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
-
-                if (isVisible) {
-                    if (scrollingDown) {
-                        contactForm.classList.remove('fade-out');
-                        contactForm.classList.add('fade-in');
-                    } else {
-                        contactForm.classList.remove('fade-in');
-                        contactForm.classList.add('fade-out');
-                    }
-                }
-            }
-        }
 
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
@@ -1369,8 +1281,8 @@
             '%c Portfolio Website Loaded Successfully!',
             'color: #00d4ff; font-size: 20px; font-weight: bold;'
         );
-        console.log('%cOnly CENTER content animates (titles & cards)!', 'color: #00ff88; font-size: 14px;');
-        console.log('%cSurrounding text stays STABLE!', 'color: #ff006e; font-size: 14px;');
+        console.log('%cContinuous Loop Animations!', 'color: #00ff88; font-size: 14px;');
+        console.log('%cNo Scroll Animations - Pure Loop!', 'color: #ff006e; font-size: 14px;');
 
         window.addEventListener('load', () => {
             const loadTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
